@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import Modal from "react-modal";
 import { CustomModal } from "../../styles/customModal";
 
 interface NewTransactionModalProps {
@@ -12,12 +11,7 @@ export function NewTransactionModal({
   onRequestClose,
 }: NewTransactionModalProps) {
   return (
-    <CustomModal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      overlayClassName="react-modal-overlay"
-      className="react-modal-content"
-    >
+    <CustomModal isOpen={isOpen} onRequestClose={onRequestClose}>
       <Container>
         <h2>Cadastrar Transação</h2>
 
