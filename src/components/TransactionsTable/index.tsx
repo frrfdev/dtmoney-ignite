@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-import { Container } from "./styles";
+import { Container, CustomColumn } from "./styles";
 
 interface Transaction {
   title: string;
@@ -32,19 +32,19 @@ export function TransactionsTable() {
         <tbody>
           {transactions.map((transaction) => (
             <tr>
-              <td>{transaction.title}</td>
-              <td>
+              <CustomColumn>{transaction.title}</CustomColumn>
+              <CustomColumn value={transaction.value}>
                 {new Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "brl",
                 }).format(transaction.value)}
-              </td>
-              <td>{transaction.category}</td>
-              <td>
+              </CustomColumn>
+              <CustomColumn>{transaction.category}</CustomColumn>
+              <CustomColumn>
                 {new Intl.DateTimeFormat("pt-BR").format(
                   new Date(transaction.createdAt)
                 )}
-              </td>
+              </CustomColumn>
             </tr>
           ))}
         </tbody>

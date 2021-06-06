@@ -14,17 +14,23 @@ export const Container = styled.div`
           text-align: left;
           line-height: 1.5rem;;
       }
-
-      td {
-          padding: 1rem 2rem;
-          border: 0;
-          background: var(--shape);
-          color: var(--text-body);
-          border-radius: 0.25rem;
-
-          &:first-child {
-              color: var(--text-title);
-          }
-      }
   }
+`;
+
+interface CustomColumnProps {
+    value?: number;
+}
+
+export const CustomColumn = styled.td<CustomColumnProps>`
+    color: ${props => props.value ? props.value >= 0 ? 'var(--green)' : 'var(--red)' : 'var(--text-body)'};
+    background: var(--shape);
+
+    padding: 1rem 2rem;
+
+    border: 0;
+    border-radius: 0.25rem;
+
+    &:first-child {
+        color: var(--text-title);
+    }
 `;
