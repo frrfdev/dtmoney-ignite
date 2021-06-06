@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 export const CustomModal = styled(Modal)`
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0, 0.1);
 
   position: fixed;
   top: 0;
