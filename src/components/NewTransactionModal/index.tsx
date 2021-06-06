@@ -23,7 +23,6 @@ export function NewTransactionModal({
     event.preventDefault();
 
     const data = { title, category, value, createdAt: new Date() };
-
     api.post("/transactions", data);
   }
 

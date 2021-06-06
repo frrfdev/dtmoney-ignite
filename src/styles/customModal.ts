@@ -14,7 +14,7 @@ export const CustomModal = styled(Modal)`
   justify-content: center;
   align-items: center;
 
-  div:first-child {
+  form:first-child {
     width: 100%;
     max-width: 576px;
 
