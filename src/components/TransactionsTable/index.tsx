@@ -33,9 +33,18 @@ export function TransactionsTable() {
           {transactions.map((transaction) => (
             <tr>
               <td>{transaction.title}</td>
-              <td>R$ {transaction.value}</td>
+              <td>
+                {new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "brl",
+                }).format(transaction.value)}
+              </td>
               <td>{transaction.category}</td>
-              <td>{transaction.createdAt}</td>
+              <td>
+                {new Intl.DateTimeFormat("pt-BR").format(
+                  new Date(transaction.createdAt)
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
