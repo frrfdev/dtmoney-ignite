@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import { Container, TransactionTypeContainer, RadioBox } from "./styles";
-import { CustomModal } from "../../styles/customModal";
 import { CloseModalButton } from "../CloseModalButton";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
 import { FormEvent, useState } from "react";
-import { api } from "../../services/api";
 import { TransactionsContext } from "../../TransactionsContext";
+import ReactModal from "react-modal";
 interface NewTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -22,14 +21,25 @@ export function NewTransactionModal({
   const [type, setType] = useState("deposit");
   const { createTransaction } = useContext(TransactionsContext);
 
-  function handleCreateNewTransaction(event: FormEvent) {
+  async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    createTransaction({ title, category, value, type });
+    await createTransaction({ title, category, value, type });
+
+    setTitle("");
+    setValue(0);
+    setCategory("");
+    setType("deposit");
+    onRequestClose();
   }
 
   return (
-    <CustomModal isOpen={isOpen} onRequestClose={onRequestClose}>
+    <ReactModal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      overlayClassName={"react-modal-overlay"}
+      className={"react-modal-content"}
+    >
       <Container onSubmit={(e) => handleCreateNewTransaction(e)}>
         <CloseModalButton onRequestClose={onRequestClose} />
 
@@ -80,6 +90,6 @@ export function NewTransactionModal({
 
         <button type="submit">Cadastrar</button>
       </Container>
-    </CustomModal>
+    </ReactModal>
   );
 }
