@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Container, TransactionTypeContainer, RadioBox } from "./styles";
 import { CustomModal } from "../../styles/customModal";
 import { CloseModalButton } from "../CloseModalButton";
@@ -5,6 +6,7 @@ import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
 import { FormEvent, useState } from "react";
 import { api } from "../../services/api";
+import { TransactionsContext } from "../../TransactionsContext";
 interface NewTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -17,13 +19,13 @@ export function NewTransactionModal({
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [value, setValue] = useState(0);
-  const [transactionType, setTransactionType] = useState("deposit");
+  const [type, setType] = useState("deposit");
+  const { createTransaction } = useContext(TransactionsContext);
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    const data = { title, category, value, createdAt: new Date() };
-    api.post("/transactions", data);
+    createTransaction({ title, category, value, type });
   }
 
   return (
@@ -50,9 +52,9 @@ export function NewTransactionModal({
         <TransactionTypeContainer>
           <RadioBox
             type="button"
-            isSelected={transactionType === "deposit"}
+            isSelected={type === "deposit"}
             selectedColor="red"
-            onClick={() => setTransactionType("deposit")}
+            onClick={() => setType("deposit")}
           >
             <img src={outcomeImg} alt="Saída" />
             <span>Saída</span>
@@ -60,8 +62,8 @@ export function NewTransactionModal({
 
           <RadioBox
             type="button"
-            onClick={() => setTransactionType("withdraw")}
-            isSelected={transactionType === "withdraw"}
+            onClick={() => setType("withdraw")}
+            isSelected={type === "withdraw"}
             selectedColor="green"
           >
             <img src={incomeImg} alt="Entrada" />

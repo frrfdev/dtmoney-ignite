@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 export const CustomModal = styled(Modal)`
+  .ReactModal__Overlay {
+    background: red;
+  }
+
   background: rgba(0,0,0, 0.1);
 
   position: fixed;
