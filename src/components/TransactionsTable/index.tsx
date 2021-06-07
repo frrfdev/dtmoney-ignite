@@ -20,7 +20,7 @@ export function TransactionsTable() {
           {transactions.map((transaction) => (
             <tr>
               <CustomColumn>{transaction.title}</CustomColumn>
-              <CustomColumn value={transaction.value}>
+              <CustomColumn type={transaction.type}>
                 {new Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "brl",

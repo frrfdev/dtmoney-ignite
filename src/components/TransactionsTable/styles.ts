@@ -18,11 +18,11 @@ export const Container = styled.div`
 `;
 
 interface CustomColumnProps {
-    value?: number;
+    type?: string;
 }
 
 export const CustomColumn = styled.td<CustomColumnProps>`
-    color: ${props => props.value ? props.value >= 0 ? 'var(--green)' : 'var(--red)' : 'var(--text-body)'};
+    color: ${props => props.type ? props.type === 'deposit' ? 'var(--green)' : 'var(--red)' : 'var(--text-body)'};
     background: var(--shape);
 
     padding: 1rem 2rem;
