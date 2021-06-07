@@ -27,7 +27,7 @@ export function Summary() {
         <strong>R$ -500</strong>
       </div>
 
-      <div>
+      <div className="highlight-background">
         <header>
           <p>Total</p>
           <img src={totalIcon} alt="Total" />
